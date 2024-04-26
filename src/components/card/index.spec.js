@@ -80,7 +80,7 @@ describe("Card component", () => {
     expect(card.element).not.toBeInTheDocument();
   });
 
-  it("should dispatch 'remove-from-cart' event", () => {
+  it("should dispatch 'add-to-cart' event", () => {
     const { addToCartBtn } = card.subElements;
     const mockDispatchEvent = jest.spyOn(card, "dispatchEvent");
 
