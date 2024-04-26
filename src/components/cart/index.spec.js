@@ -37,7 +37,7 @@ describe("Cart component", () => {
     expect(cart.element).toBeVisible();
   });
 
-  it("shopld render total price correctly", () => {
+  it("should render total price correctly", () => {
     const { total } = cart.subElements;
 
     expect(total).toHaveTextContent("600");

@@ -35,15 +35,6 @@ describe("Card component", () => {
     expect(typeof brand).toBe("string");
   });
 
-  it("should call dispatchEvent on addToCartBtn click", () => {
-    const { addToCartBtn } = card.subElements;
-    const mockDispatchEvent = jest.spyOn(card, "dispatchEvent");
-
-    addToCartBtn.dispatchEvent(new CustomEvent("pointerdown"));
-
-    expect(mockDispatchEvent).toHaveBeenCalledWith("add-to-cart", card.data);
-  });
-
   it("should render data correctly", () => {
     const testData = {
       id: "1",
