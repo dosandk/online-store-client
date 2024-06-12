@@ -1,7 +1,7 @@
 const getIframeBody = () => {
   // get the iframe > document > body
   // and retry until the body element is not empty
-  return cy.get('#checkout iframe')
+  return cy.get('#checkout iframe', { timeout: 20000 })
     .its('0.contentDocument.body').should('not.be.empty')
     .then(cy.wrap)
 }
@@ -23,7 +23,7 @@ describe('Create Order Flow', () => {
 
   it('should successfully submits payment form and creates an order', () => {
     // fill in the form
-    getIframeBody().find('#cardNumber').type("4242 4242 4242 4242");
+    getIframeBody().find('#cardNumber', { timeout: 60000 }).type("4242 4242 4242 4242");
     getIframeBody().find('#cardExpiry').type("01 / 25");
     getIframeBody().find('#cardCvc').type(111);
     getIframeBody().find('#billingName').type('Foo Bar');
@@ -31,13 +31,13 @@ describe('Create Order Flow', () => {
     getIframeBody().find(".SubmitButton:submit").click();
 
     // check results
-    cy.url().should('include', Cypress.env('payment_status_url'));
+    cy.url({ timeout: 20000 }).should('include', Cypress.env('payment_status_url'));
     cy.contains('Payment successfully passed');
   })
 
   it('should not submit a payment form if payment details are invalid', () => {
     // insert incorrect credit card number
-    getIframeBody().find('#cardNumber').type("4242 4242");
+    getIframeBody().find('#cardNumber', { timeout: 60000 }).type("4242 4242");
     getIframeBody().find(".SubmitButton:submit").click();
     // check errors
     getIframeBody().contains('Your card number is incomplete.');

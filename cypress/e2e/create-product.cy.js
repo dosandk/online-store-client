@@ -11,7 +11,11 @@ describe('Create Product Flow', () => {
     const product_price = 1000;
 
     // fill the form
-    cy.get("[data-cy='title']").type(product_title);
+    // should("not.be.disabled") is a HACK for a slow network
+    // cypress will wait for the form to be fully operatonal
+    // otherwise cypress won't be able to type anything
+    // also, you can use type(product_title, {force: true}) but then other inputs will fail
+    cy.get("[data-cy='title']").should("not.be.disabled").type(product_title);
     cy.get("[data-cy='price']").clear().type(product_price);
     cy.get("[data-cy='brand']").select(2).should('have.value', 'apple');
     cy.get("[data-cy='rating']").invoke("val", 4)
@@ -23,17 +27,23 @@ describe('Create Product Flow', () => {
       fileName: 'example.png',
       mimeType: 'image/png',
       lastModified: Date.now(),
-    })
+    });
 
     // intercept requests to imgur in order to not upload a real image
     cy.intercept('POST', 'https://api.imgur.com/**', {
       data: {
         link: 'https://i.imgur.com/huOsvQS.png'
       },
-    })
+    });
+
+    // intercept form submit request
+    cy.intercept('POST', '/api/shop/products').as('createProduct');
 
     // submit form
     cy.get("[data-cy='create-product-submit-btn']").click();
+
+    // wait a form submit to finish
+    cy.wait('@createProduct');
 
     // check everything is correct
     // observe successfull notification
