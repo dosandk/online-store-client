@@ -1,16 +1,12 @@
 export default class BaseComponents {
   subElements = {};
 
-  beforeInit() { }
-
   init() {
     this.beforeRender();
     this.render();
     this.getSubElements();
     this.afterRender();
   }
-
-  afterInit() { }
 
   beforeRender() {
     // This method will be called before render method
@@ -42,11 +38,7 @@ export default class BaseComponents {
     }
   }
 
-  update() {
-    // TODO: Implement update method
-  }
-
-  beforeDestroy() { }
+  beforeDestroy() {}
 
   remove() {
     if (this.element) {
@@ -71,5 +63,5 @@ export default class BaseComponents {
     this.afterDestroy();
   }
 
-  afterDestroy() { }
+  afterDestroy() {}
 }

@@ -1,4 +1,5 @@
 import Page from "./index.js";
+import productStore from "../../storage/store.js";
 
 const categories = ["Monitors", "Laptops", "Video cards"];
 const brands = ["Asus", "Acer", "Apple"];
@@ -19,6 +20,14 @@ const products = [
 
 describe("Page", () => {
   let page;
+
+  beforeAll(() => {
+    productStore.init();
+  });
+
+  afterAll(() => {
+    productStore.destroy();
+  });
 
   beforeEach(() => {
     fetchMock.mockResponses(

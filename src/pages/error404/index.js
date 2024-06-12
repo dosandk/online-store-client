@@ -1,6 +1,6 @@
 import BaseComponent from "../../components/base-component.js";
 
-export default class Page extends BaseComponent {
+export default class Error404 extends BaseComponent {
   constructor() {
     super();
     this.init();

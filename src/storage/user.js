@@ -1,4 +1,4 @@
-import LocalStorageService from "./index.js";
+import LocalStorageService from "../services/local-storage/index.js";
 
 class UserStore {
   abortController = new AbortController();

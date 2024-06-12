@@ -1,39 +1,42 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <title>Store</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-  </head>
-  <body>
-    <script type="module">
-      import ProductStore from "./store.js";
 
-      const productStore = new ProductStore();
+<head>
+  <title>Store</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
 
-      const products = [
-        {
-          id: "1",
-          price: 100,
-        },
-        {
-          id: "2",
-          price: 200,
-        },
-      ];
+<body>
+  <script type="module">
+    import ProductStore from "./store.js";
 
-      productStore.add(products[0]);
-      productStore.add(products[0]);
-      productStore.add(products[0]);
-      productStore.add(products[1]);
-      productStore.add(products[1]);
-      productStore.remove(products[0].id);
-      productStore.remove(products[0].id);
-      productStore.remove(products[0].id);
+    const productStore = new ProductStore();
 
-      productStore.removeAll();
+    const products = [
+      {
+        id: "1",
+        price: 100,
+      },
+      {
+        id: "2",
+        price: 200,
+      },
+    ];
 
-      console.error(productStore.getTotal());
-    </script>
-  </body>
+    productStore.add(products[0]);
+    productStore.add(products[0]);
+    productStore.add(products[0]);
+    productStore.add(products[1]);
+    productStore.add(products[1]);
+    productStore.remove(products[0].id);
+    productStore.remove(products[0].id);
+    productStore.remove(products[0].id);
+
+    productStore.removeAll();
+
+    console.error(productStore.getTotal());
+  </script>
+</body>
+
 </html>

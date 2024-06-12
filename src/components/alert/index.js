@@ -3,8 +3,7 @@ import BaseComponent from "../base-component";
 
 export default class CustomAlert extends BaseComponent {
   timerId;
-  type = "success";
-  constructor(type = "", message = "") {
+  constructor(type = "success", message = "") {
     super();
     this.type = type;
     this.message = message;

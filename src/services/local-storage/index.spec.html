@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Local Storage asserts</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+
+<body>
+  <script type="module">
+    import LocalStorageService from "./index.js";
+
+    const storage = new LocalStorageService(window.localStorage);
+
+    storage.add("key", "some value");
+
+    console.assert(
+      storage.get("key") === "some value",
+      "should add and get data correctly",
+    );
+
+    storage.remove("key");
+
+    console.assert(
+      storage.get("key") === null,
+      "should remove item correctly",
+    );
+
+    storage.add("key2", "some value #2");
+    storage.add("key3", "some value #3");
+
+    console.assert(
+      typeof storage.getAll() === "object",
+      "should return object for items in storage",
+    );
+
+    storage.removeAll();
+
+    console.assert(
+      storage.getAll() === null,
+      "should return null if no items found",
+    );
+  </script>
+</body>
+
+</html>

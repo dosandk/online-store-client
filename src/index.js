@@ -7,7 +7,7 @@ import router from "./router/index.js";
 import productStore from "./storage/store.js";
 import userStore from "./storage/user.js";
 
-import alertsService from "./services/index.js";
+import alertsService from "./services/alerts/index.js";
 
 import "./styles.scss";
 

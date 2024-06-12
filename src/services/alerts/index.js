@@ -1,4 +1,4 @@
-import CustomAlert from "../components/alert/index.js";
+import CustomAlert from "../../components/alert/index.js";
 
 class AlertsService {
   abortController = new AbortController();
@@ -42,6 +42,6 @@ class AlertsService {
   }
 }
 
-const alertService = new AlertsService();
+const alertsService = new AlertsService();
 
-export default alertService;
+export default alertsService;

@@ -1,4 +1,4 @@
-import LocalStorageService from "./index.js";
+import LocalStorageService from "../services/local-storage/index.js";
 
 class ProductStore {
   abortController = new AbortController();
@@ -145,6 +145,7 @@ class ProductStore {
 
   destroy() {
     this.abortController.abort();
+    this.storage = null;
   }
 }
 

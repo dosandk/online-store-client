@@ -1,10 +1,10 @@
-import BaseComponents from "../base-component.js";
+import BaseComponent from "../base-component.js";
 import { signin } from "../../api/auth.js";
 
 import "./login-form.css";
 
-export default class LoginForm extends BaseComponents {
-  constructor(onSuccessCallback = () => { }, onErrorCallback = () => { }) {
+export default class LoginForm extends BaseComponent {
+  constructor(onSuccessCallback = () => {}, onErrorCallback = () => {}) {
     super();
     this.signin = signin;
 
@@ -62,8 +62,6 @@ export default class LoginForm extends BaseComponents {
 
   onSuccess() {
     this.stopLoading();
-    // this.element.dispatchEvent(new CustomEvent("login", { bubbles: true }));
-    // this.dispatchEvent("login");
     this.dispatchEvent("login", {});
     this.onSuccessCallback();
   }
@@ -121,9 +119,6 @@ export default class LoginForm extends BaseComponents {
   }
 
   showAlert(type = "", message = "") {
-    // this.element.dispatchEvent(
-    //   new CustomEvent(`show-${type}-alert`, { bubbles: true, detail: message }),
-    // );
     this.dispatchEvent(`show-${type}-alert`, message);
   }
 

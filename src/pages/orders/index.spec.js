@@ -1,0 +1,34 @@
+import OrdersPage from "./index";
+
+describe("Orders page", () => {
+  let page;
+
+  beforeEach(() => {
+    page = new OrdersPage();
+
+    document.body.append(page.element);
+  });
+
+  afterEach(() => {
+    page.destroy();
+
+    document.body.innerHTML = "";
+  });
+
+  it("should be rendered correctly", () => {
+    expect(page.element).toBeInTheDocument();
+    expect(page.element).toBeVisible();
+  });
+
+  it("should render page title", () => {
+    const title = page.element.querySelector(".app-page-title");
+
+    expect(title).toHaveTextContent("Orders");
+  });
+
+  it("should have ability to be destroyed", () => {
+    page.destroy();
+
+    expect(page.element).not.toBeInTheDocument();
+  });
+});

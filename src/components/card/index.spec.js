@@ -35,15 +35,6 @@ describe("Card component", () => {
     expect(typeof brand).toBe("string");
   });
 
-  it("should call dispatchEvent on addToCartBtn click", () => {
-    const { addToCartBtn } = card.subElements;
-    const mockDispatchEvent = jest.spyOn(card, "dispatchEvent");
-
-    addToCartBtn.dispatchEvent(new CustomEvent("pointerdown"));
-
-    expect(mockDispatchEvent).toHaveBeenCalledWith("add-to-cart", card.data);
-  });
-
   it("should render data correctly", () => {
     const testData = {
       id: "1",
@@ -78,5 +69,37 @@ describe("Card component", () => {
     card.destroy();
 
     expect(card.element).not.toBeInTheDocument();
+  });
+
+  it("should dispatch 'add-to-cart' event", () => {
+    const { addToCartBtn } = card.subElements;
+    const mockDispatchEvent = jest.spyOn(card, "dispatchEvent");
+
+    addToCartBtn.dispatchEvent(new CustomEvent("pointerdown"));
+
+    expect(mockDispatchEvent).toHaveBeenCalledWith("add-to-cart", card.data);
+  });
+
+  it("should toggle inStore property and update footer", () => {
+    const { addToCartBtn } = card.subElements;
+
+    // Initial state
+    expect(card.data.inStore).toBe(false);
+    expect(addToCartBtn).toHaveTextContent("Add to cart");
+    expect(addToCartBtn.classList.contains("active")).toBe(false);
+
+    // Click to add to cart
+    addToCartBtn.dispatchEvent(new CustomEvent("pointerdown"));
+
+    expect(card.data.inStore).toBe(true);
+    expect(addToCartBtn).toHaveTextContent("Remove from cart");
+    expect(addToCartBtn.classList.contains("active")).toBe(true);
+
+    // Click to remove from cart
+    addToCartBtn.dispatchEvent(new CustomEvent("pointerdown"));
+
+    expect(card.data.inStore).toBe(false);
+    expect(addToCartBtn).toHaveTextContent("Add to cart");
+    expect(addToCartBtn.classList.contains("active")).toBe(false);
   });
 });
