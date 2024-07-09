@@ -20,7 +20,7 @@ runs:
     - name: Code Climate Coverage Action
       uses: paambaati/codeclimate-action@v5.0.0
       env:
-        CC_TEST_REPORTER_ID: dc3688da7b404264d3b10c3f1a058ce4cf8f96bdada5793dba6b1ed1f86464b1
+        CC_TEST_REPORTER_ID: 074420a1438fe97aef7fe0c07183368ddd71c6ee04402ebc64224b17a850aaff
       with:
         coverageCommand: npm run test:coverage
         debug: true
