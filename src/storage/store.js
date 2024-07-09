@@ -4,7 +4,7 @@ class ProductStore {
   abortController = new AbortController();
 
   init() {
-    this.storage = new LocalStorageService(window.localStorage);
+    this.storage = new LocalStorageService(localStorage);
 
     this.initListeners();
   }
