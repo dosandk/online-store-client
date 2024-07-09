@@ -8,7 +8,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/deploy
         with:
-          target: online-store.bootcamp.place/client
+          target: shop.bootcamp.place/client
           env: prod
           ssh-user: ${{ secrets.SSH_USER }}
           ssh-host: ${{ secrets.SSH_HOST }}
