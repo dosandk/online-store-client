@@ -65,8 +65,6 @@ describe("CreateProduct page", () => {
       value: [file],
     });
 
-    image.value = [file];
-
     image.removeAttribute("required");
 
     const showAlertSpy = jest.spyOn(page, "showAlert");
