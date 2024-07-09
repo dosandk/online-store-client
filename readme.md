@@ -1,6 +1,6 @@
 # Online Store
 
-[![Test Coverage](https://api.codeclimate.com/v1/badges/d0ad4ccff6b913e3e5f4/test_coverage)](https://codeclimate.com/github/dosandk/online-store-finished/test_coverage)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/109f1739a7eb84dd0570/test_coverage)](https://codeclimate.com/github/dosandk/online-store-client/test_coverage)
 
 ## Development
 
