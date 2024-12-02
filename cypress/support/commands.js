@@ -8,13 +8,14 @@ Cypress.Commands.add('login', (email, password) => {
       cy.get("[data-cy='password']").type(password);
       // submit
       cy.get("[data-cy='login-submit-btn']").click();
-
-      // HACK
-      // make the cypress wait till login is completed
-      // otherwise if we try to visit protected page
-      // the frontend may not be able to set up the flag that user was logged in
-      cy.get("[data-cy='app-modal']").should('not.exist');
-      cy.get("[data-cy='alert']").should('be.visible').and('contain', 'Login success');
+    },
+    {
+      validate() {
+        // validate the session to make sure login has finished
+        // this command will also run to restore a session
+        cy.visit('/')
+        cy.get("[data-cy='logout-btn']").should('be.visible').and('contain', 'Logout')
+      }
     }
   )
 });
