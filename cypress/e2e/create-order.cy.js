@@ -22,9 +22,10 @@ describe('Create Order Flow', () => {
   })
 
   it('should successfully submits payment form and creates an order', () => {
+    getIframeBody().find("[data-testid='card-accordion-item-button']", { timeout: 60000 }).click({ force: true });
     // fill in the form
-    getIframeBody().find('#cardNumber', { timeout: 60000 }).type("4242 4242 4242 4242");
-    getIframeBody().find('#cardExpiry').type("01 / 25");
+    getIframeBody().find('#cardNumber').type("4242 4242 4242 4242");
+    getIframeBody().find('#cardExpiry').type("01 / 30");
     getIframeBody().find('#cardCvc').type(111);
     getIframeBody().find('#billingName').type('Foo Bar');
     // submit the form
@@ -36,8 +37,9 @@ describe('Create Order Flow', () => {
   })
 
   it('should not submit a payment form if payment details are invalid', () => {
+    getIframeBody().find("[data-testid='card-accordion-item-button']", { timeout: 60000 }).click({ force: true });
     // insert incorrect credit card number
-    getIframeBody().find('#cardNumber', { timeout: 60000 }).type("4242 4242");
+    getIframeBody().find('#cardNumber').type("4242 4242");
     getIframeBody().find(".SubmitButton:submit").click();
     // check errors
     getIframeBody().contains('Your card number is incomplete.');
@@ -47,14 +49,14 @@ describe('Create Order Flow', () => {
     getIframeBody().find('#cardCvc').type(11);
     getIframeBody().find(".SubmitButton:submit").click();
     // check errors
-    getIframeBody().contains("Your card's security code is incomplete.");
+    getIframeBody().contains("security code is incomplete.");
     getIframeBody().find('#cardCvc').clear();
 
     // insert incorrect credit card expiration date
     getIframeBody().find('#cardExpiry').type("01 / 21");
     getIframeBody().find(".SubmitButton:submit").click();
     // check errors
-    getIframeBody().contains("Your card's expiration year is in the past.");
+    getIframeBody().contains("year is in the past.");
     getIframeBody().find('#cardExpiry').clear();
 
     // empty form submit should not redirect
